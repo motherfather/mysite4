@@ -16,7 +16,7 @@
 		<div id="content">
 			<div id="guestbook">
 				<h1>방명록</h1>
-				<form action="${pageContext.request.contextPath }/guestbook/add" method="post">
+				<form action="${pageContext.request.contextPath }/guestbook/insert" method="post">
 					<input type="text" name="name" placeholder="이름">
 					<input type="password" name="password" placeholder="비밀번호">
 					<textarea name="content" placeholder="내용을 입력해 주세요."></textarea>

@@ -26,8 +26,8 @@ public class GuestbookController {
 		return "guestbook/list";
 	}
 	
-	@RequestMapping("/add")
-	public String add(@ModelAttribute GuestbookVo vo) {
+	@RequestMapping("/insert")
+	public String insert(@ModelAttribute GuestbookVo vo) {
 		guestbookService.insert(vo);
 		return "redirect:/guestbook";
 	}

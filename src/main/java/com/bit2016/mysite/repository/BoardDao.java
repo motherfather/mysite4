@@ -23,9 +23,9 @@ public class BoardDao {
 		sqlSession.insert("board.insert", vo);
 	}
 	
-	public void delete( Long boardNo, Long userNo ) {
+	public void delete( Long no, Long userNo ) {
 		BoardVo vo = new BoardVo();
-		vo.setNo(boardNo);
+		vo.setNo(no);
 		vo.setUserNo(userNo);
 		sqlSession.delete("board.delete", vo);
 	}

@@ -49,7 +49,7 @@
 							<td>
 								<c:choose>
 									<c:when test="${not empty authUser && authUser.no == vo.userNo }">
-										<a href="${pageContext.request.contextPath }/board?a=delete&no=${vo.no }&p=${currentPage }&kwd=${keyword }" class="del">삭제</a>
+										<a href="${pageContext.request.contextPath }/board/delete/no=${vo.no }&p=${currentPage }&kwd=${keyword }" class="del">삭제</a>
 									</c:when>
 									<c:otherwise>
 										&nbsp;
@@ -86,7 +86,7 @@
 				</div>				
 				<div class="bottom">
 					<c:if test="${not empty authUser }">
-						<a href="${pageContext.request.contextPath }/board/writeform" id="new-book">글쓰기</a>
+						<a href="${pageContext.request.contextPath }/board/writeform/no=${no }" id="new-book">글쓰기</a>
 					</c:if>
 				</div>
 			</div>
