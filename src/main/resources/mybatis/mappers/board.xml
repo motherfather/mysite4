@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<insert id="insert" parameterType="boardvo">
+		<choose>
+		<when test="groupNo == null">
+		<![CDATA[
+		insert into board 
+		values(board_seq.nextval, #{title }, #{content }, sysdate, 0, 
+		nvl((select max(group_no) from board),0) + 1, 1, 0, #{userNo })
+		]]>
+		</when>
+		<otherwise>
+		<![CDATA[
+		insert into board values(board_seq.nextval, #{title }, #{content }, sysdate, 0, 
+		#{groupNo }, #{orderNo }, #{depth }, #{userNo }) 
+		]]>
+		</otherwise>
+		</choose>
+	</insert>
+	
+	<delete id="delete" parameterType="boardvo">
+		<![CDATA[
+		delete from board where no=#{no } and users_no as userNo=#{userNo }
+		]]>
+	</delete>
+</mapper>

@@ -13,10 +13,10 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping("")
-	public String list(Model model) {
-		
-		return "board/list";
-	}
+//	@RequestMapping("")
+//	public String list(Model model) {
+//		
+//		return "board/list";
+//	}
 	
 }

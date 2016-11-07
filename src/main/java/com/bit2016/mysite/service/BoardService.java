@@ -11,7 +11,7 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 	
-	public void list() {
-		boardDao.
-	}
+//	public void list() {
+//		boardDao.
+//	}
 }
