@@ -18,9 +18,10 @@ public class GuestbookDao {
 		return sqlSession.selectOne("guestbook.getByNo", no);
 	}
 
-	public Long delete(GuestbookVo vo) {
-		sqlSession.delete("guestbook.delete", vo);
-		return vo.getNo();
+	public boolean delete(GuestbookVo vo) {
+		int result = 0;
+		result = sqlSession.delete("guestbook.delete", vo);
+		return result == 1;
 	}
 	
 	public Long insert(GuestbookVo vo) {

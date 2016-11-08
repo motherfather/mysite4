@@ -47,11 +47,11 @@ public class GuestbookController {
 	@ResponseBody
 	@RequestMapping("/delete")
 	public Map<String, Object> delete(@ModelAttribute GuestbookVo vo) {
-		Long no = guestbookService.delete(vo);
+		boolean result = guestbookService.delete(vo);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", "success");
-		map.put("data", no);
+		map.put("data", result? vo.getNo():-1);
 		return map;
 	}
 }

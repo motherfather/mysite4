@@ -31,7 +31,7 @@ public class GuestbookService {
 		return guestbookDao.get(no);
 	}
 	
-	public Long delete(GuestbookVo vo) {
+	public boolean delete(GuestbookVo vo) {
 		return guestbookDao.delete(vo);
 	}
 }
