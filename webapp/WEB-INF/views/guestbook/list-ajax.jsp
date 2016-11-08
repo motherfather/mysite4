@@ -75,7 +75,7 @@ var fetchList = function() {
 	}
 	++page;
 	$.ajax({
-		url: "${pageContext.request.contextPath }/api/guestbook?a=ajax-list&p=" + page,
+		url: "${pageContext.request.contextPath }/guestbook/api/list?p=" + page,
 		type: "get",
 		dataType: "json",
 		data:"",
@@ -117,7 +117,7 @@ $(function(){
 
 				// 삭제 요청
 				$.ajax({
-					url: "${pageContext.request.contextPath }/api/guestbook?a=ajax-delete&no=" + no + "&password=" + password,
+					url: "${pageContext.request.contextPath }/guestbook/api/delete?no=" + no + "&password=" + password,
 					type: "get",
 					dataType: "json",
 					data: "",
@@ -191,19 +191,17 @@ $(function(){
 		}
 		
 		$.ajax({
-			url: "${pageContext.request.contextPath }/api/guestbook",
+			url: "${pageContext.request.contextPath }/guestbook/api/add",
 			type: "post",
 			dataType: "json",
-			data: "a=ajax-add" +
-				  "&name=" + name + 
+			data: "name=" + name + 
 				  "&password=" + password + 
 				  "&content=" + content,
-			success: function( response ) { 
+		success: function( response ) { 
 				if( response.result != "success" ) {
 					console.error( response.message );
 					return;
 				}
-				
 				// rendering
 				render( response.data, true );
 				
@@ -221,14 +219,16 @@ $(function(){
 		var scrollTop = $window.scrollTop();
 		var windowHeight = $window.height();
 		var documentHeight = $( document ).height();
+		//var index = true
 		
 		// 스크롤 바가 바닥까지 왔을 때( 10px 덜 왔을 때 )
-		if( scrollTop + windowHeight + 10 > documentHeight ) {
+		if( scrollTop + windowHeight + 10 > documentHeight /*&& index == true*/) {
+			//console.log("s" + scrollTop + "w" + windowHeight + "d" + documentHeight);
 			//console.log( "call fetchList" );
+			//index = false;
 			fetchList();
-		}
+		};
 	});
-	
 	// 1번째 리스트 가져오기
 	fetchList();
 });

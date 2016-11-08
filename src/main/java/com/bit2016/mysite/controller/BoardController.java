@@ -26,22 +26,22 @@ public class BoardController {
 		model.addAttribute(list);
 		return "board/list";
 	}
-	
-	@RequestMapping("/writeform")
-	public String insertform() {
-		return "board/write";
-	}
-	
-	@RequestMapping("/write")
-	public String insert(@ModelAttribute BoardVo vo) {
-		boardService.insert(vo);
-		return "redirect:/board";
-	}
-	
-	@RequestMapping("/delete")
-	public String delete(@ModelAttribute BoardVo vo) {
-		boardService.delete(vo);
-		return "redirect:board";
-	}
+//	
+//	@RequestMapping("/writeform")
+//	public String insertform() {
+//		return "board/write";
+//	}
+//	
+//	@RequestMapping("/write")
+//	public String insert(@ModelAttribute BoardVo vo) {
+//		boardService.insert(vo);
+//		return "redirect:/board";
+//	}
+//	
+//	@RequestMapping("/delete")
+//	public String delete(@ModelAttribute BoardVo vo) {
+//		boardService.delete(vo);
+//		return "redirect:board";
+//	}
 	
 }

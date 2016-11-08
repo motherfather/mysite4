@@ -25,4 +25,35 @@
 		delete from board where no=#{no } and users_no as userNo=#{userNo }
 		]]>
 	</delete>
+	
+	<select id="getList" parameterType="boardvo">
+		<choose>
+			<when test="kwd == '%%' ">
+				<![CDATA[
+					select * 
+					from ( select no, title, hit, regDate, depth, name, users_no, rownum as rn
+							 from( select a.no, a.title, a.hit, to_char(a.reg_date, 'yyyy-mm-dd hh24:mi:ss') as regDate, 
+							 				  a.depth, b.name, a.users_no 
+							 	     from board a, users b 
+							 	 	where a.users_no = b.no 
+							 	 order by group_no desc, order_no asc )) 
+				where (#{page }-1)*#{size }+1 <= rn and rn <= #{page }*#{size }";
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+					select * 
+					from ( select no, title, hit, regDate, depth, name, users_no, rownum as rn
+							 from( select a.no, a.title, a.hit, to_char(a.reg_date, 'yyyy-mm-dd hh24:mi:ss') as regDate, 
+							 				  a.depth, b.name, a.users_no 
+							 	     from board a, users b 
+							 	 	where a.users_no = b.no 
+							 	 	and (title like #{kwd } or content like #{kwd })
+							 	 order by group_no desc, order_no asc )) 
+				where (#{page }-1)*#{size }+1 <= rn and rn <= #{page }*#{size }";
+				]]>
+			</otherwise>
+		</choose>
+	</select>
+	
 </mapper>

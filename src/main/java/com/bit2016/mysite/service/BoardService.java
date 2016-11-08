@@ -24,7 +24,7 @@ public class BoardService {
 		boardDao.delete(vo.getNo(), vo.getUserNo());
 	}
 	
-	public List<BoardVo> getList(String keyword, Integer page, Integer size) {
+	public List<BoardVo> getList(String keyword, Integer page) {
 		return boardDao.getList(keyword, page, LIST_SIZE);
 	}
 }

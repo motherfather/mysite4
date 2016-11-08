@@ -5,7 +5,7 @@
 		<!-- alias 줄때는 소문자로 하는게 관례 -->
 		<typeAlias alias="uservo" type="com.bit2016.mysite.vo.UserVo"/>
 		<typeAlias alias="guestbookvo" type="com.bit2016.mysite.vo.GuestbookVo"/>
-		<!-- typeAlias alias="boardvo" type="com.bit2016.mysite.vo.BoardVo"/ -->
+		<typeAlias alias="boardvo" type="com.bit2016.mysite.vo.BoardVo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />

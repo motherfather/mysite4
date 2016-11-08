@@ -18,11 +18,20 @@ public class GuestbookService {
 		return guestbookDao.getList();
 	}
 	
+	public List<GuestbookVo> list(int page) {
+		return guestbookDao.getList(page);
+	}
+	
 	public void insert(GuestbookVo vo) {
 		guestbookDao.insert(vo);
 	}
 	
-	public void delete(GuestbookVo vo) {
-		guestbookDao.delete(vo);
+	public GuestbookVo insert2(GuestbookVo vo) {
+		Long no = guestbookDao.insert(vo);
+		return guestbookDao.get(no);
+	}
+	
+	public Long delete(GuestbookVo vo) {
+		return guestbookDao.delete(vo);
 	}
 }
