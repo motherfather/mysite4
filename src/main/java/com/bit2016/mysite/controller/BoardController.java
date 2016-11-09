@@ -1,16 +1,14 @@
 package com.bit2016.mysite.controller;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bit2016.mysite.service.BoardService;
-import com.bit2016.mysite.vo.BoardVo;
 
 @Controller
 @RequestMapping("/board")
@@ -22,10 +20,11 @@ public class BoardController {
 	@RequestMapping("")
 	public String list(@RequestParam(value="kwd", required=true, defaultValue="") String keyword, 
 			@RequestParam(value="page", required=true, defaultValue="1") Integer page, Model model) {
-		List<BoardVo> list = boardService.getList(keyword, page);
-		model.addAttribute(list);
+		Map<String, Object> map = boardService.getList(keyword, page);
+		model.addAttribute(map);
 		return "board/list";
 	}
+	
 //	
 //	@RequestMapping("/writeform")
 //	public String insertform() {

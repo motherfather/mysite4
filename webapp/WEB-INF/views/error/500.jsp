@@ -10,6 +10,6 @@
 </head>
 <body>
 	<h1>Ooooops!</h1>
-	<p>문제발생</p>
+	<p>문제발생 500error</p>
 </body>
 </html>

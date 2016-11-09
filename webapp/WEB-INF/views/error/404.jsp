@@ -10,9 +10,6 @@
 </head>
 <body>
 	<h1>Ooooops!</h1>
-	<p>
-		죄송합니다.<br>
-		요청하신 페이지를 찾을 수 없습니다.
-	</p>
+	<p>문제발생 404error</p>
 </body>
 </html>

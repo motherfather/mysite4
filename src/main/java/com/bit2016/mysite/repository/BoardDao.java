@@ -32,59 +32,17 @@ public class BoardDao {
 	}
 	
 	public List<BoardVo> getList( String keyword, Integer page, Integer size ) {
-		String kwd = "%" + keyword + "%";
+		//String kwd = "%" + keyword + "%";
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("kwd", kwd);
+		//map.put("kwd", kwd);
 		map.put("page", page);
 		map.put("size", size);
 		return sqlSession.selectList("board.getList", map);
 	}
 	
 	public int getTotalCount( String keyword ) {
-		int totalCount = 0;
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = sqlSession.getConnection();
-			if( "".equals( keyword ) ) {
-				String sql = "select count(*) from board";
-				pstmt = conn.prepareStatement(sql);
-			} else { 
-				String sql =
-					"select count(*)" +
-					"  from board" +
-					" where title like ? or content like ?";
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setString(1, "%" + keyword + "%");
-				pstmt.setString(2, "%" + keyword + "%");
-			}
-			rs = pstmt.executeQuery();
-			if( rs.next() ) {
-				totalCount = rs.getInt( 1 );
-			}
-		} catch (SQLException e) {
-			System.out.println( "error:" + e );
-		} finally {
-			try {
-				if( rs != null ) {
-					rs.close();
-				}
-				if( pstmt != null ) {
-					pstmt.close();
-				}
-				if( conn != null ) {
-					conn.close();
-				}
-			} catch ( SQLException e ) {
-				System.out.println( "error:" + e );
-			}  
-		}
-		
-		return totalCount;
+		//String kwd = "%" + keyword + "%";
+		return sqlSession.selectOne("board.getTotalCount", keyword);
 	}
 	
 	public void increaseGroupOrder( Integer groupNo, Integer orderNo ){
