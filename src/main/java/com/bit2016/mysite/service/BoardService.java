@@ -34,7 +34,7 @@ public class BoardService {
 		int currentPage = page;
 		int currentBlock = totalBlock > 1 ? (int)Math.ceil((double)currentPage/5) : 1;
 		int beginPage = currentBlock > 1 ? (currentBlock-1)*LIST_SIZE+1 : 1;
-		int endPage = currentBlock*LIST_SIZE;
+		int endPage = currentBlock < totalBlock ? currentBlock*LIST_SIZE : totalPage;
 		int prevPage = currentBlock > 1 ? (currentBlock-1)*LIST_SIZE : 0;
 		int nextPage = currentBlock < totalBlock ? (currentBlock*LIST_SIZE)+1 : 0 ;
 		List<BoardVo> list = boardDao.getList(keyword, page, PAGE_SIZE);

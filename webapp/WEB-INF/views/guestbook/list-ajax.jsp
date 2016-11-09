@@ -48,7 +48,7 @@ var messageBox = function( title, message, callback ){
 				$( this ).dialog( "close" );
 			}
 		},
-		close: callback || function(){}
+		close: callback || function() {}
 	});
 }
 

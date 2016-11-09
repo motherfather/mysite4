@@ -64,7 +64,7 @@
 						<c:if test="${map.prevPage > 0 }" >
 							<li><a href="${pageContext.request.contextPath }/board?p=${map.prevPage }&kwd=${map.keyword }">◀</a></li>
 						</c:if>
-						<c:forEach begin="${map.beginPage }" end="${map.beginPage + map.listSize }" var="page">
+						<c:forEach begin="${map.beginPage }" end="${map.beginPage + map.listSize - 1 }" var="page">
 							<c:choose>
 								<c:when test="${map.endPage < page }">
 									<li>${page }</li>

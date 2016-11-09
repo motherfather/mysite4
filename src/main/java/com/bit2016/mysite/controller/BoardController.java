@@ -19,9 +19,9 @@ public class BoardController {
 	
 	@RequestMapping("")
 	public String list(@RequestParam(value="kwd", required=true, defaultValue="") String keyword, 
-			@RequestParam(value="page", required=true, defaultValue="1") Integer page, Model model) {
+			@RequestParam(value="p", required=true, defaultValue="1") Integer page, Model model) {
 		Map<String, Object> map = boardService.getList(keyword, page);
-		model.addAttribute(map);
+		model.addAttribute("map", map);
 		return "board/list";
 	}
 	

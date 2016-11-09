@@ -32,16 +32,16 @@ public class BoardDao {
 	}
 	
 	public List<BoardVo> getList( String keyword, Integer page, Integer size ) {
-		//String kwd = "%" + keyword + "%";
+		String kwd = "%" + keyword + "%";
 		Map<String, Object> map = new HashMap<String, Object>();
-		//map.put("kwd", kwd);
+		map.put("kwd", kwd);
 		map.put("page", page);
 		map.put("size", size);
 		return sqlSession.selectList("board.getList", map);
 	}
 	
 	public int getTotalCount( String keyword ) {
-		//String kwd = "%" + keyword + "%";
+		String kwd = "%" + keyword + "%";
 		return sqlSession.selectOne("board.getTotalCount", keyword);
 	}
 	

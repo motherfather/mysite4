@@ -27,8 +27,8 @@
 	</delete>
 	
 	<select id="getList" parameterType="map" resultType="boardvo">
-	 	<!-- <choose>
-			<when test="#{kwd } == '%%' "> -->
+	 	<choose>
+			<when test="#{kwd } == '%%' ">
 				<![CDATA[
 					select * 
 					from ( select no, title, hit, regDate, depth, name, users_no, rownum as rn
@@ -39,7 +39,7 @@
 							 	 order by group_no desc, order_no asc )) 
 				where (#{page }-1)*#{size }+1 <= rn and rn <= #{page }*#{size }
 				]]>
-		<!-- 	</when>
+			</when>
 			<otherwise>  
 				<![CDATA[
 					select * 
@@ -53,7 +53,7 @@
 				where (#{page }-1)*#{size }+1 <= rn and rn <= #{page }*#{size }
 				]]>
 		  	</otherwise>
-		</choose> -->
+		</choose>
 	</select>
 	
 	<select id="getTotalCount" parameterType="string" resultType="int">
