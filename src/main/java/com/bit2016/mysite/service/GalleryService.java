@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.bit2016.mysite.repository.GalleryDao;
 
@@ -15,8 +14,7 @@ public class GalleryService {
 	private GalleryDao galleryDao;
 	
 	public void insert(Map map){
-		MultipartFile multipartFile = null;
-		String originalFileName = map.mf.getOriginalFilename();
+		System.out.println(map.get(3));
 //		String originalFileName = map.multipart
 		galleryDao.insert(map);
 	}

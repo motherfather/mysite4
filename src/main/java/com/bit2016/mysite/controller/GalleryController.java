@@ -44,6 +44,7 @@ public class GalleryController {
 		map.put("no", no);
 		map.put("vo", vo);
 		map.put("mf", multipartFile);
+		System.out.println(map.get(3));
 		
 		galleryService.insert(map);
 		
