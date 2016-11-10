@@ -37,16 +37,9 @@ public class GalleryController {
 	
 	@Auth
 	@RequestMapping("/upload")
-	public String upload(@AuthUser UserVo authUser, 
-			@RequestParam(value="no", required=true, defaultValue="") Long no, GalleryVo vo,
+	public String upload(@RequestParam(value="no", required=true, defaultValue="") Long no, GalleryVo vo,
 			@RequestParam(value="file") MultipartFile multipartFile) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("no", no);
-		map.put("vo", vo);
-		map.put("mf", multipartFile);
-		System.out.println(map.get(3));
-		
-		galleryService.insert(map);
+		galleryService.insert(no, vo, multipartFile);
 		
 		return "/gallery";
 	}
