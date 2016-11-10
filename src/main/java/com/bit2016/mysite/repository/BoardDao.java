@@ -42,7 +42,7 @@ public class BoardDao {
 	
 	public int getTotalCount( String keyword ) {
 		String kwd = "%" + keyword + "%";
-		return sqlSession.selectOne("board.getTotalCount", keyword);
+		return sqlSession.selectOne("board.getTotalCount", kwd);
 	}
 	
 	public void increaseGroupOrder( Integer groupNo, Integer orderNo ){

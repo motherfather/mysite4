@@ -49,6 +49,12 @@
 	<!-- 패키지 com.bit2016.xxxxxxxx.controller 밑에 있는 클래스 중에 @Controller를 달고 있는 
 		클래스의 객체를 생성 하겠다. -->
 	<context:component-scan base-package="com.bit2016.mysite.controller" />
+	
+	<!-- the mvc resources tag does the magic -->
+ 	<mvc:resources mapping="/gallery/assets/**" location="file:/upload/" />
+ 
+	<context:annotation-config />
+	<context:component-scan base-package="com.bit2016.mysite" />
 
 	<!-- 기본 뷰 리졸버 -->
 	<bean id="viewResolver"
@@ -59,6 +65,17 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1" />
 	</bean>
+	
+	<!-- 멀티파트 리졸버 -->
+	<bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대업로드 가능한 바이트크기 -->
+		<property name="maxUploadSize" value="52428800" />
+		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
+		<!-- property name="maxInMemorySize" value="52428800" /-->
+		<!-- defaultEncoding -->
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>	
 	
 	<!-- Interceptors -->
     <mvc:interceptors>

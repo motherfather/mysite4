@@ -57,17 +57,17 @@
 	</select>
 	
 	<select id="getTotalCount" parameterType="string" resultType="int">
-	<!-- 	<choose>
-			<when test="#{kwd } == '%%' "> -->
+		<choose>
+			<when test="#{kwd } == %%">
 				<![CDATA[
 					select count(*) from board
 					]]>
-	<!-- 		</when>
+			</when>
 			<otherwise> 
 				<![CDATA[
 					select count(*) from board where title like #{kwd } or content like #{kwd }
 				]]>
 		  	</otherwise>
-		</choose> -->
+		</choose> 
 	</select>
 </mapper>

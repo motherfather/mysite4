@@ -48,12 +48,14 @@ var messageBox = function( title, message, callback ){
 				$( this ).dialog( "close" );
 			}
 		},
-		close: callback || function() {}
+		close: callback || function() {}	// null값이 들어오면 오류 function()이 일어나게 하려고 || 을 쓴다
 	});
 }
 
 var render = function( vo, mode ) {
 	// 현업에서는 이부분을 template library ex) ejs
+	console.log(vo);
+	
 	var htmls = 
 		"<li id='gb-" + vo.no + "'>" +
 		"<strong>" + vo.name + "</strong>" +
