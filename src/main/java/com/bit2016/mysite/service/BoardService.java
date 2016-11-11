@@ -38,8 +38,6 @@ public class BoardService {
 		int prevPage = currentBlock > 1 ? (currentBlock-1)*LIST_SIZE : 0;
 		int nextPage = currentBlock < totalBlock ? (currentBlock*LIST_SIZE)+1 : 0 ;
 		List<BoardVo> list = boardDao.getList(keyword, page, PAGE_SIZE);
-		System.out.println(totalCount);
-		System.out.println(currentPage);
 		
 		map.put("totalCount", totalCount);
 		map.put("totalPage", totalPage);
