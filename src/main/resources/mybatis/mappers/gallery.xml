@@ -4,7 +4,14 @@
 <mapper namespace="gallery">
 	<insert id="insert" parameterType="map">
 		<![CDATA[
-			insert into gallery values(gallery_sqe.nextval, #
+			insert into gallery values(gallery_seq.nextval, #{orgFileName }, #{saveFileName },
+			#{comments }, #{fileExtName }, #{fileSize }, sysdate, #{no })
 		]]>
 	</insert>
+	
+	<select id="select" resultType="String">
+		<![CDATA[
+			select save_file_name from gallery order by no desc
+		]]>
+	</select>
 </mapper>

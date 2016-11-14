@@ -9,6 +9,20 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.request.contextPath }/assets/css/gallery.css" rel="stylesheet" type="text/css">
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+$(function() {
+	$("#dialog"+$("no.index")).dialog({
+		autoOpen:false,
+		modal:true
+	});
+	$("#dialog"+("no.index")).click(function() {
+		$("#dialog"+("no.index")).dialog("open");
+	});
+});
+</script>
 </head>
 <body>
 	<div id="container">
@@ -20,10 +34,12 @@
 					<a href="${pageContext.request.contextPath }/gallery/form" id="upload-image">이미지 올리기</a>
 				</div>
 				<ul>
-					<li>
-						<a href="" class="image" style="background-image:url('${pageContext.request.contextPath }/assets/gallery/1.gif')" title="사진">1.gif</a>
+				<c:forEach items="${list }" var="list" varStatus="no">
+					<li id="'dialog'+$(no.index)">
+						<a href="" class="image" style="background-image:url('${pageContext.request.contextPath }/gallery/assets/${list }')">${list }</a>
 						<a href="" class="del-button"	title="삭제">삭제</a>
 					</li>	
+				</c:forEach>
 				</ul>	
 			</div>
 		</div>

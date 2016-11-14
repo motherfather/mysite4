@@ -19,10 +19,10 @@
 					<a href="${pageContext.request.contextPath }/gallery" id="upload-image">리스트 가기</a>
 				</div><br><br><br>
 				<div>
-					<form method="post" action="${pageContext.request.contextPath }/gallery/upload" enctype="mulitpart/form-data">
-						<input type="hidden" value=${no }>
+					<form method="post" action="${pageContext.request.contextPath }/gallery/upload" enctype="multipart/form-data">
+						<input type="hidden" value=${no } name="no">
 						<label>내용:</label>
-						<input type="text" name="comment" title="코멘트 입력" placeholder="코멘트를 입력하세요">
+						<input type="text" name="comments" title="코멘트 입력" placeholder="코멘트를 입력하세요">
 						<br><br>
 						<label>파일:</label>
 						<input type="file" name="file">
