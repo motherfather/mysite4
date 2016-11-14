@@ -7,12 +7,15 @@
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	xmlns:mvc="http://www.springframework.org/schema/mvc">
+	
+	<!-- auto proxy -->
+	<aop:aspectj-autoproxy />
 
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->
 	<mvc:annotation-driven>
 		<!-- Validator, Conversion Service, Formatter Message Converter 설정 -->
 		<mvc:message-converters>
-		
+
 			<!-- 스트링 타입 지원, 요청 본문 내용 그대로 가져올 수 있음, 응답 콘텐츠 타입이 "text/html", 단순문자열 가능 -->
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<property name="supportedMediaTypes">
@@ -21,23 +24,24 @@
 					</list>
 				</property>
 			</bean>
-			
+
 			<!-- 자바 객체와 JSON문서를 자동변환 -->
-			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>
 						<value>application/json; charset=UTF-8</value>
 					</list>
 				</property>
 			</bean>
-			
+
 		</mvc:message-converters>
-		
+
 		<!-- argument resolver -->
-	     <mvc:argument-resolvers>
-		 	<bean class="com.bit2016.security.AuthUserHandlerMethodArgumentResolver"/>           
-	     </mvc:argument-resolvers>
-	     
+		<mvc:argument-resolvers>
+			<bean class="com.bit2016.security.AuthUserHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
+
 	</mvc:annotation-driven>
 
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
@@ -49,10 +53,10 @@
 	<!-- 패키지 com.bit2016.xxxxxxxx.controller 밑에 있는 클래스 중에 @Controller를 달고 있는 
 		클래스의 객체를 생성 하겠다. -->
 	<context:component-scan base-package="com.bit2016.mysite.controller" />
-	
+
 	<!-- the mvc resources tag does the magic -->
- 	<mvc:resources mapping="/gallery/assets/**" location="file:/upload/" />
- 
+	<mvc:resources mapping="/gallery/assets/**" location="file:/upload/" />
+
 	<!-- 기본 뷰 리졸버 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -62,43 +66,49 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1" />
 	</bean>
-	
+
 	<!-- 멀티파트 리졸버 -->
-	<bean id="multipartResolver" 
+	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 최대업로드 가능한 바이트크기 -->
 		<property name="maxUploadSize" value="52428800" />
 		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
-		<!-- property name="maxInMemorySize" value="52428800" /-->
+		<!-- property name="maxInMemorySize" value="52428800" / -->
 		<!-- defaultEncoding -->
 		<property name="defaultEncoding" value="utf-8" />
-	</bean>	
-	
+	</bean>
+
 	<!-- Interceptors -->
-    <mvc:interceptors>
-    	<!-- 
-        <mvc:interceptor>
-        	<mvc:mapping path="/board/**" /> 
-    		<bean class="com.bit2016.mysite.interceptor.MyInterceptor2" />
-        </mvc:interceptor>
-         -->
-        <mvc:interceptor>
-        	<mvc:mapping path="/user/login" /> 
-    		<bean class="com.bit2016.security.AuthLoginInterceptor" />
-        </mvc:interceptor>
-        
-        <mvc:interceptor>
-        	<mvc:mapping path="/user/logout" /> 
-    		<bean class="com.bit2016.security.AuthLogoutInterceptor" />
-        </mvc:interceptor>
-        
-        <mvc:interceptor>
-		    <mvc:mapping path="/**" />
-		    <mvc:exclude-mapping path="/user/login" />
-		    <mvc:exclude-mapping path="/user/logout" />
-		    <mvc:exclude-mapping path="/assets/**" />
-		    <bean class="com.bit2016.security.AuthInterceptor" />
-		 </mvc:interceptor>
-    </mvc:interceptors>
-	
+	<mvc:interceptors>
+		<!-- <mvc:interceptor> <mvc:mapping path="/board/**" /> <bean class="com.bit2016.mysite.interceptor.MyInterceptor2" 
+			/> </mvc:interceptor> -->
+		<mvc:interceptor>
+			<mvc:mapping path="/user/login" />
+			<bean class="com.bit2016.security.AuthLoginInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/user/logout" />
+			<bean class="com.bit2016.security.AuthLogoutInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/user/login" />
+			<mvc:exclude-mapping path="/user/logout" />
+			<mvc:exclude-mapping path="/assets/**" />
+			<bean class="com.bit2016.security.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- MessageSource -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="defaultEncoding" value="utf-8"/><!-- 반장형이 찾은 좋은 방식!!! 한글 인식!!! -->
+		<property name="basenames">
+			<list>
+				<value>messages/messages_ko</value>
+			</list>
+		</property>
+	</bean>
 </beans>

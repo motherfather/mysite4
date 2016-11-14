@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StopWatch;
 
 import com.bit2016.mysite.vo.GuestbookVo;
 
@@ -30,7 +31,13 @@ public class GuestbookDao {
 	}
 	
 	public List<GuestbookVo> getList() {
+		StopWatch stopWatch = new StopWatch();
+		
+		stopWatch.start();
 		List<GuestbookVo> list = sqlSession.selectList("guestbook.getList");
+		stopWatch.stop();
+		
+		System.out.println("[executionTime][GuestbookDao.getList]:" + stopWatch.getTotalTimeMillis() + " millis");
 		return list;
 	}
 	
